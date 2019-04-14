@@ -1,0 +1,29 @@
+@todo-nav-width: 40px;
+.todo-nav{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #323232;
+    & > P{
+        padding: 40px 0 0 0;
+        color: #b0b0b0;
+        font-size: 20px;
+        text-align: center;
+        writing-mode: tb-rl;
+        letter-spacing: 10px;
+        line-height: @todo-nav-width;
+    }
+    & > .setting{
+        position: absolute;
+        bottom: 40px;
+        width: @todo-nav-width;
+        height: @todo-nav-width;
+        color: #b0b0b0;
+        font-size: 20px;
+        text-align: center;
+        line-height: @todo-nav-width;
+        &:hover{
+            color: #fff;
+        }
+    }
+}
