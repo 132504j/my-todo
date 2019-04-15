@@ -8,7 +8,6 @@
         padding: 40px 0 0 0;
         color: #b0b0b0;
         font-size: 20px;
-        text-align: center;
         writing-mode: tb-rl;
         letter-spacing: 10px;
         line-height: @todo-nav-width;
@@ -24,6 +23,14 @@
         line-height: @todo-nav-width;
         &:hover{
             color: #fff;
+        }
+    }
+}
+@media screen and (max-width: 768px){
+    .todo-nav-mobile{
+        & > P{
+            writing-mode: horizontal-tb;
+            text-align: center;
         }
     }
 }

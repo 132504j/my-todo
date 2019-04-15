@@ -46,3 +46,34 @@
         }
     }
 }
+@media screen and (max-width: 768px){
+    .todo-list-mobile{
+        padding: 0px;
+        & > .todo-item{
+            border-left: none;
+            border-top: 2px #323232 solid;
+            & > .globa{
+                & .data{
+                    bottom: 40px;
+                    text-align: right;
+                    line-height: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 320px) {
+    .todo-list-mobile{
+        & > .todo-item{
+            & > .globa{
+                & > .date{
+                    left: 3px;
+                }
+                & > .button{
+                    right: 3px;
+                }
+            }
+        }
+    }
+}

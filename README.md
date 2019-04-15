@@ -1,32 +1,17 @@
-# todo
+# my-todo 比简单还简单的事务管理
 
-## Project setup
-```
-npm install
-```
+项目地址<a target='_brock' href='http://www.mytodo.xyz'>www.mytodo.xyz</a>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+待实现：
 
-### Compiles and minifies for production
-```
-npm run build
-```
+1. ~~适配移动端~~ ok
+2. ~~事务的紧急状态：[重要-紧急，重要-不紧急，不重要-紧急，不重要-不紧急]~~ ok
+3. 增加程序修改数据页面，当程序更新了事务数据时，前端登陆自动检测是否为最新的数据模型，如果不是就运行更新
+4. ~~事务列表排序优化~~ ok
+5. 添加背景图
+6. 事务可以通过多选筛选查看，[重要-紧急，重要-不紧急，不重要-紧急，不重要-不紧急]，[已完成，未完成]
+7. 增加预计要完成的时间，到点会弹出dialog框询问是否已完成
+8. 主题换色，夜间模式和白天模式
+9. 增加后台，[流量查看，正在使用的人数]
+10. 事务转移，将本机事务转移到另一条机器（远程转移，手动转移）
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# my-todo
-# my-todo
-# my-todo

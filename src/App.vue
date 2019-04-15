@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <todo-view></todo-view>
+    <todo-logo-animation></todo-logo-animation>
   </div>
 </template>
 
 <script>
 import todoView from '@/views/view.vue'
+import todoLogoAnimation from '@/components/todo-logo-animation.vue'
 export default {
   name: 'app',
   components: {
-    todoView
+    todoView,
+    todoLogoAnimation
   },
   mounted(){
     // 如果是第一次使用，将初始化todo
@@ -33,5 +36,11 @@ html{
   left: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+}
+@media screen and (max-width: 768px){
+  #app{
+    overflow: auto;
+  }
 }
 </style>

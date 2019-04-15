@@ -1,10 +1,23 @@
 .todo-add{
+    padding: 20px 0 40px 0;
+    border-bottom: 1px #e0e0e0 solid;
     & > .desc{
         margin: 0 0 10px 10px;
         font-size: 20px;
         color: #808080;
         line-height: 40px;
     }
-    padding: 20px 0 40px 0;
-    border-bottom: 1px #e0e0e0 solid;
+    & > .group{
+        margin: 0 0 5px 0;
+        & > .todo-input{
+            margin: 0 0 5px 0;
+        }
+        & > .todo-button{
+            margin-left: 5px;
+            float: right;
+        }
+        & > .todo-select{
+            float: right;
+        }
+    }
 }
