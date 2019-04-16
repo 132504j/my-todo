@@ -6,31 +6,36 @@
 </template>
 
 <script>
-import todoView from '@/views/view.vue'
-import todoLogoAnimation from '@/components/todo-logo-animation.vue'
+import todoView from "@/views/view.vue";
+import todoLogoAnimation from "@/components/todo-logo-animation.vue";
 export default {
-  name: 'app',
+  name: "app",
   components: {
     todoView,
     todoLogoAnimation
   },
-  mounted(){
+  mounted() {
     // 如果是第一次使用，将初始化todo
-    if(!localStorage.getItem('todoList')){
-      localStorage.setItem('todoList', JSON.stringify([]))
+    if (!localStorage.getItem("todoList")) {
+      localStorage.setItem("todoList", JSON.stringify([]));
     }
-    // 将数据初始化到vuex
-    this.$store.commit('initTodoList')
+    if (!localStorage.getItem("todoShow")) {
+      localStorage.setItem("todoShow", JSON.stringify([]));
+    }
+    // 将todo列表初始化到vuex
+    this.$store.commit("initTodoList");
+    // 将todoshow初始化到vuex
+    this.$store.commit("initTodoShow");
   }
-}
+};
 </script>
 
 <style scopeds>
-html{
-    position: relative;
-    height: 100%;
+html {
+  position: relative;
+  height: 100%;
 }
-#app{
+#app {
   position: absolute;
   top: 0;
   left: 0;
@@ -38,8 +43,8 @@ html{
   width: 100%;
   overflow: hidden;
 }
-@media screen and (max-width: 768px){
-  #app{
+@media screen and (max-width: 768px) {
+  #app {
     overflow: auto;
   }
 }

@@ -13,9 +13,26 @@ export default new Vuex.Store({
     todo2_nofinish: [],
     todo3_nofinish: [],
     todo4_nofinish: [],
-
+    
+    todo_show: []
   },
   mutations: {
+     /**
+      * 初始化todo_show 只能调用一次
+      * @param {Object} state vuex.state
+      */
+    initTodoShow(state){
+      state.todo_show = JSON.parse(localStorage.getItem('todoShow'))
+    },
+    /**
+     * 设置todo_show
+     * @param {Object} state vuex.state
+     * @param {Array} value 新的显示列表
+     */
+    setTodoShow(state, value){
+      state.todo_show = value
+      localStorage.setItem('todoShow', JSON.stringify(state.todo_show))
+    },
     /**
      * 初始化todoList，只能调用一次
      * @param {Object} state vuex.state
@@ -117,7 +134,7 @@ export default new Vuex.Store({
     /**
      * 修改一个事务的完成状态
      * @param {Object} state vuex.state
-     * @param {Objec} value {target: Number 目标事务的索引, value: Boolean 目标新值}
+     * @param {Objec} value 要修改的米笔
      */
     setFinish(state, value) {
 
@@ -230,7 +247,7 @@ export default new Vuex.Store({
             }
           }
         }
-        // 添加到重要-不紧急-完成
+        //删除重要-不紧急-完成
         if (value.todotype === '重要-不紧急') {
           for (let count = 0; count < state.todo2_finish.length; count++) {
             if (state.todo2_finish[count].id === value.id) {
@@ -238,7 +255,7 @@ export default new Vuex.Store({
             }
           }
         }
-        // 添加到不重要-紧急-完成
+        //删除不重要-紧急-完成
         if (value.todotype === '不重要-紧急') {
           for (let count = 0; count < state.todo3_finish.length; count++) {
             if (state.todo3_finish[count].id === value.id) {
@@ -246,7 +263,7 @@ export default new Vuex.Store({
             }
           }
         }
-        // 添加到不重要-不紧急-完成
+        //删除不重要-不紧急-完成
         if (value.todotype === '不重要-不紧急') {
           for (let count = 0; count < state.todo4_finish.length; count++) {
             if (state.todo4_finish[count].id === value.id) {
@@ -262,7 +279,7 @@ export default new Vuex.Store({
             }
           }
         }
-        // 添加到重要-不紧急-未完成
+        //删除重要-不紧急-未完成
         if (value.todotype === '重要-不紧急') {
           for (let count = 0; count < state.todo2_nofinish.length; count++) {
             if (state.todo2_nofinish[count].id === value.id) {
@@ -270,7 +287,7 @@ export default new Vuex.Store({
             }
           }
         }
-        // 添加到不重要-紧急-未完成
+        //删除不重要-紧急-未完成
         if (value.todotype === '不重要-紧急') {
           for (let count = 0; count < state.todo3_nofinish.length; count++) {
             if (state.todo3_nofinish[count].id === value.id) {
@@ -278,11 +295,11 @@ export default new Vuex.Store({
             }
           }
         }
-        // 添加到不重要-不紧急-未完成
+        //删除不重要-不紧急-未完成
         if (value.todotype === '不重要-不紧急') {
           for (let count = 0; count < state.todo4_nofinish.length; count++) {
             if (state.todo4_nofinish[count].id === value.id) {
-              state.todo5_nofinish.splice(count, 1)
+              state.todo4_nofinish.splice(count, 1)
             }
           }
         }
@@ -307,19 +324,126 @@ export default new Vuex.Store({
      * @param {Object} state vuex.state
      */
     getTodoList(state) {
-      return [
-        ...state.todo1_nofinish,
-        ...state.todo2_nofinish,
-        ...state.todo3_nofinish,
-        ...state.todo4_nofinish,
-        ...state.todo1_finish,
-        ...state.todo2_finish,
-        ...state.todo3_finish,
-        ...state.todo4_finish
-      ]
-    }
-  },
-  actions: {
+      let todolist = []
 
+      if(state.todo_show.indexOf('重要-紧急') < 0 &&
+      state.todo_show.indexOf('重要-不紧急') < 0 &&
+      state.todo_show.indexOf('不重要-紧急') < 0 &&
+      state.todo_show.indexOf('不重要-不紧急') < 0 && 
+      state.todo_show.indexOf('已完成') < 0 &&
+      state.todo_show.indexOf('未完成') < 0 || 
+      state.todo_show.indexOf('重要-紧急') < 0 &&
+      state.todo_show.indexOf('重要-不紧急') < 0 &&
+      state.todo_show.indexOf('不重要-紧急') < 0 &&
+      state.todo_show.indexOf('不重要-不紧急') < 0 && 
+      state.todo_show.indexOf('已完成') >= 0 &&
+      state.todo_show.indexOf('未完成') >= 0){
+        return [
+          ...state.todo1_nofinish,
+          ...state.todo2_nofinish,
+          ...state.todo3_nofinish,
+          ...state.todo4_nofinish,
+          ...state.todo1_finish,
+          ...state.todo2_finish,
+          ...state.todo3_finish,
+          ...state.todo4_finish
+        ]
+      }
+
+      if(state.todo_show.indexOf('未完成') >= 0){
+
+        if(state.todo_show.indexOf('重要-紧急') < 0 &&
+        state.todo_show.indexOf('重要-不紧急') < 0 &&
+        state.todo_show.indexOf('不重要-紧急') < 0 &&
+        state.todo_show.indexOf('不重要-不紧急') < 0)
+        {
+          return [
+            ...state.todo1_nofinish,
+            ...state.todo2_nofinish,
+            ...state.todo3_nofinish,
+            ...state.todo4_nofinish,
+          ]
+        }
+        if(state.todo_show.indexOf('重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo1_nofinish)
+        }
+        if(state.todo_show.indexOf('重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo2_nofinish)
+        }
+        if(state.todo_show.indexOf('不重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo3_nofinish)
+        }
+        if(state.todo_show.indexOf('不重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo4_nofinish)
+        }
+      }
+
+
+      if(state.todo_show.indexOf('已完成') >= 0){   
+
+        if(state.todo_show.indexOf('重要-紧急') < 0 &&
+        state.todo_show.indexOf('重要-不紧急') < 0 &&
+        state.todo_show.indexOf('不重要-紧急') < 0 &&
+        state.todo_show.indexOf('不重要-不紧急') < 0)
+        {
+          return [
+            ...state.todo1_finish,
+            ...state.todo2_finish,
+            ...state.todo3_finish,
+            ...state.todo4_finish,
+          ]
+        }
+
+        if(state.todo_show.indexOf('重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo1_finish)
+        }
+        if(state.todo_show.indexOf('重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo2_finish)
+        }
+        if(state.todo_show.indexOf('不重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo3_finish)
+        }
+        if(state.todo_show.indexOf('不重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo4_finish)
+        }
+      }
+
+      if(state.todo_show.indexOf('已完成') < 0 && state.todo_show.indexOf('未完成') < 0){
+        if(state.todo_show.indexOf('重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo1_nofinish)
+        }
+        if(state.todo_show.indexOf('重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo2_nofinish)
+        }
+        if(state.todo_show.indexOf('不重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo3_nofinish)
+        }
+        if(state.todo_show.indexOf('不重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo4_nofinish)
+        }
+        if(state.todo_show.indexOf('重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo1_finish)
+        }
+        if(state.todo_show.indexOf('重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo2_finish)
+        }
+        if(state.todo_show.indexOf('不重要-紧急') >= 0){
+          todolist= todolist.concat(state.todo3_finish)
+        }
+        if(state.todo_show.indexOf('不重要-不紧急') >= 0){
+          todolist= todolist.concat(state.todo4_finish)
+        }
+      }
+     
+      return todolist
+    },
+     /**
+     * 获取todo_show
+     * @param {Object} state vuex.state
+     */
+    getTodoShow(state){
+      // console.log(state.todo_show)
+      return state.todo_show
+    },
   }
 })
