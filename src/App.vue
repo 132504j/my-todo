@@ -1,20 +1,29 @@
 <template>
   <div id="app">
+    <todo-background v-if='!showBackground'></todo-background>
     <todo-view></todo-view>
-    <todo-logo-animation></todo-logo-animation>
+    <!-- <todo-logo-animation></todo-logo-animation> -->
   </div>
 </template>
 
 <script>
 import todoView from "@/views/view.vue";
 import todoLogoAnimation from "@/components/todo-logo-animation.vue";
+import todoBackground from "@/components/todo-background.vue";
 export default {
   name: "app",
+  data(){
+    return{
+      showBackground: false
+    }
+  },
   components: {
     todoView,
-    todoLogoAnimation
+    todoLogoAnimation,
+    todoBackground,
   },
   mounted() {
+    this.showBackground = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
     // 如果是第一次使用，将初始化todo
     if (!localStorage.getItem("todoList")) {
       localStorage.setItem("todoList", JSON.stringify([]));
@@ -27,6 +36,7 @@ export default {
     // 将todoshow初始化到vuex
     this.$store.commit("initTodoShow");
   }
+  
 };
 </script>
 
@@ -46,6 +56,7 @@ html {
 @media screen and (max-width: 768px) {
   #app {
     overflow: auto;
+    background-image: none
   }
 }
 </style>
