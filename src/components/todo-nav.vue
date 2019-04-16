@@ -12,7 +12,8 @@
     >
       <el-input
         v-model="newSignature"
-        placeholder="写下你的个性签名"
+        placeholder="写下你的个性签名, 最多10个字"
+        :maxlength='10'
         @keydown.native.enter="setSignature(), showSignatureDialog = false"
       ></el-input>
       <span slot="footer">
@@ -32,8 +33,9 @@
     >
       <el-input
         v-model="newSignature"
-        placeholder="写下你的个性签名"
-        @keydown.native.enter="setSignature(), showSignatureDialog = false"
+        placeholder="写下你的个性签名, 最多10个字"
+        :maxlength='10'
+        @keydown.native.enter="setSignature(), showSignatureDialogMobile = false"
       ></el-input>
       <span slot="footer">
         <el-button @click="showSignatureDialogMobile = false">取 消</el-button>

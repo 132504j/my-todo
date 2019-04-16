@@ -13,8 +13,8 @@ import {Button,
   Option,
   Form,
   FormItem,
-  Row,
-  Col} from 'element-ui'
+  CheckboxGroup,
+  CheckboxButton} from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/el-style/index.css'
 
@@ -31,7 +31,7 @@ Vue.use(Select)
 Vue.use(Option)
 Vue.use(Form)
 Vue.use(FormItem)
-Vue.use(Row)
-Vue.use(Col)
+Vue.use(CheckboxGroup)
+Vue.use(CheckboxButton)
 Vue.prototype.$message = Message
 

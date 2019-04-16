@@ -61,14 +61,6 @@
 <script>
 export default {
   name: "todoList",
-  // watch: {
-  //   getTodoList: {
-  //     handler: function(todo) {
-  //       console.log("a");
-  //     },
-  //     deep: true
-  //   }
-  // },
   computed: {
     getTodoList() {
       return this.$store.getters.getTodoList;
