@@ -13,25 +13,9 @@ export default new Vuex.Store({
     todo2_nofinish: [],
     todo3_nofinish: [],
     todo4_nofinish: [],
-    
-    todo_show: []
+
   },
   mutations: {
-    /**
-     * 获取todo_show
-     * @param {Object} state vuex.state
-     */
-    getTodoshow(state){
-      return state.todo_show
-    },
-    /**
-     * 设置todo_show
-     * @param {Object} state vuex.state
-     * @param {Array} value 新的显示列表
-     */
-    setTodoshow(state, value){
-      state.todo_show = value
-    },
     /**
      * 初始化todoList，只能调用一次
      * @param {Object} state vuex.state
@@ -133,7 +117,7 @@ export default new Vuex.Store({
     /**
      * 修改一个事务的完成状态
      * @param {Object} state vuex.state
-     * @param {Objec} value 要修改的米笔
+     * @param {Objec} value {target: Number 目标事务的索引, value: Boolean 目标新值}
      */
     setFinish(state, value) {
 
@@ -298,7 +282,7 @@ export default new Vuex.Store({
         if (value.todotype === '不重要-不紧急') {
           for (let count = 0; count < state.todo4_nofinish.length; count++) {
             if (state.todo4_nofinish[count].id === value.id) {
-              state.todo4_nofinish.splice(count, 1)
+              state.todo5_nofinish.splice(count, 1)
             }
           }
         }
@@ -334,7 +318,8 @@ export default new Vuex.Store({
         ...state.todo4_finish
       ]
     }
+  },
+  actions: {
+
   }
-  // 依靠todo-show来绝定显示那些事务
-  // 将todo-show写入local
 })

@@ -8,7 +8,6 @@
       </el-header>
       <el-main class="todo-view-main-mobile">
         <todo-add></todo-add>
-        <todo-show></todo-show>
         <todo-list></todo-list>
       </el-main>
     </el-container>
@@ -20,7 +19,6 @@
       </el-aside>
       <el-main class="todo-view-main">
         <todo-add></todo-add>
-        <todo-show></todo-show>
         <todo-list></todo-list>
       </el-main>
     </el-container>
@@ -31,14 +29,12 @@
 import todoNav from "@/components/todo-nav.vue";
 import todoAdd from "@/components/todo-add.vue";
 import todoList from "@/components/todo-list.vue";
-import todoShow from "@/components/todo-show.vue";
 export default {
   name: "todoView",
   components: {
     todoNav,
     todoAdd,
-    todoList,
-    todoShow
+    todoList
   }
 };
 </script>
