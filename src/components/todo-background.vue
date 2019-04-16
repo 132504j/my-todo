@@ -46,17 +46,17 @@ export default {
     // 添加粒子
     // x，y为粒子坐标，xa, ya为粒子xy轴加速度，max为连线的最大距离
     var dots = [];
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 50; i++) {
       var x = Math.random() * canvas.width;
       var y = Math.random() * canvas.height;
-      var xa = Math.random() * 2 - 1;
-      var ya = Math.random() * 2 - 1;
+      var xa = Math.random() * 1 - 1;
+      var ya = Math.random() * 1 - 1;
       dots.push({
         x: x,
         y: y,
         xa: xa,
         ya: ya,
-        max: 6000
+        max: 10000
       });
     }
     // 延迟100秒开始执行动画，如果立即执行有时位置计算会出错
