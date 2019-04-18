@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="footer">
-      <span>作者：江震泳</span> ---
+      <span>作者：沈健汉</span> ---
       <a href="https://github.com/132504j/my-todo.git" target="_brock">
         <span>github：https://github.com/132504j/my-todo.git</span>
       </a>

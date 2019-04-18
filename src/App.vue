@@ -2,7 +2,7 @@
   <div id="app">
     <todo-background v-if='!showBackground'></todo-background>
     <todo-view></todo-view>
-    <!-- <todo-logo-animation></todo-logo-animation> -->
+    <todo-logo-animation></todo-logo-animation>
   </div>
 </template>
 

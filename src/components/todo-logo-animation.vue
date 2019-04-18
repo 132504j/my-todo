@@ -5,7 +5,7 @@
         <span>my-<font>todo</font></span>
       </p>
       <p class="desc">比简单还简单的事务管理</p>
-      <p class="auther">作者：江震泳</p>
+      <p class="auther">作者：沈健汉</p>
     </div>
   </transition>
 </template>
